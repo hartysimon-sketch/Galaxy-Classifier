@@ -1,1 +1,3 @@
 data/
+train_set.pth
+val_set.pth
