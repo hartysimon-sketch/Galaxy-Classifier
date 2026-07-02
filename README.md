@@ -1,0 +1,1 @@
+the lab9 template ipynb file is the main file with the network architecture and preprocessing steps. This is the file that I turned in for the assignment, but I have messed with some of the code since then so some of the text may be out of date.
