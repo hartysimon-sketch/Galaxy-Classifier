@@ -56,10 +56,10 @@ class GalaxyDataset(Dataset):
             ids = []
             imgs = []
             lbls = []
-       w     for gal_path in galaxy_paths:
+            for gal_path in galaxy_paths:
                 headers = fits_df(gal_path).sort_values(by="BAND")
                 ids.append(headers.at[0, 'RA'])
-                lbls.append(headers.at[0, 'EXCESS'])
+                lbls.append(headers.at[0, 'FLAG'])
 
                 gal_imgs = []
                 for _, row in headers.iterrows():
