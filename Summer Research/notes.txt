@@ -1,0 +1,4 @@
+try train val rotation
+enusure all galxies are being used
+find images with multiple objects
+inclination angle transfrom
