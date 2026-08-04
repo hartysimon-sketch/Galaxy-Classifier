@@ -1,16 +1,11 @@
-try train val rotation                      
 enusure all galxies are being used          DONE
-find images with multiple objects           DONE . . ?
+find images with multiple objects           DONE
 inclination angle transfrom                 DONE
 
 
-
-WITH REGRESSION 
-0.8 accuracy, basically by just predicting 6.1!
-predicting ~7 with MSE
-
-CLASSIFICATION
-accuarcy of 0.61, always predicted false 
-
-ASK
-what interpolation method to use
+try train val rotation                      
+find images with multiple objects
+make sure there are balanced number of candidates and noncandidates
+look at low train size networks
+make multimodal (beta, Av)
+use linear interpolation
