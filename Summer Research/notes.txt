@@ -9,3 +9,6 @@ make sure there are balanced number of candidates and noncandidates
 look at low train size networks
 make multimodal (beta, Av)
 use linear interpolation
+
+NEXT TIME:
+ask about the UManchester
