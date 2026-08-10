@@ -17,5 +17,6 @@ ask about the UManchester
 
 
 LOG:
-after balancing:    ~0.6 (weird dip in graph tho)
-2X2 cutouts:        0.58 (one spike but more normal graph)
+best was  ~0.7 accuracy after 40 epochs
+
+2X2 no batch norm or perspective: min loss of ~0.78 after ~50 epochs (dropout 0.3)
