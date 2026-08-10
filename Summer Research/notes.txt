@@ -17,5 +17,5 @@ ask about the UManchester
 
 
 LOG:
-after balancing: 0.7583
-2X2 cutouts: 
+after balancing:    ~0.6 (weird dip in graph tho)
+2X2 cutouts:        0.57 (spiky but more normal graph)
