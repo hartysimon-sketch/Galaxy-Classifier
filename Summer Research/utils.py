@@ -1,8 +1,10 @@
 import pandas as pd
 from astropy.io import fits
 from pathlib import Path
+import numpy as np
 from PIL import Image
 import tqdm
+from torchvision.transforms import InterpolationMode
 
 from torch.utils.data import Dataset
 from torchvision import transforms
@@ -50,7 +52,7 @@ class GalaxyDataset(Dataset):
         else:
             # preproccessing transforms
             pre = transforms.Compose([
-                transforms.Resize(input_size)]) # resize
+                transforms.Resize(input_size, InterpolationMode.BILINEAR)]) # resize
             
             # store ids, images, and class probabilities
             ids = []
@@ -165,3 +167,73 @@ class FCBlock(nn.Module):
 
     def forward(self, x):
         return self.block(x)
+
+
+def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=None):
+    from astropy.convolution import convolve
+    from astropy.stats import SigmaClip
+    from photutils.background import Background2D, MedianBackground
+    from photutils.segmentation import make_2dgaussian_kernel, SourceFinder
+    """Detect sources, keep only the segment at the image center, and
+    replace all other detected sources with background noise.
+
+    Parameters
+    ----------
+    data : 2D ndarray
+        The cutout image.
+    box_size : int
+        Background2D mesh size (pixels). Should be smaller than the cutout.
+    fwhm : float
+        FWHM (pixels) of the Gaussian smoothing kernel used for detection.
+    nsigma : float
+        Detection threshold in units of background RMS.
+    npixels : int
+        Minimum number of connected pixels for a detection.
+
+    Returns
+    -------
+    cleaned : 2D ndarray
+        Image with all non-central sources replaced by background noise.
+    segment_map : SegmentationImage or None
+        Final segmentation map (None if no sources were detected).
+    central_label : int or None
+        Label of the segment identified as the central/target galaxy.
+    """
+
+    # 1. Estimate background and background RMS
+    box_size = min(box_size, min(data.shape) // 3)
+    bkg = Background2D(data, box_size, filter_size=(3, 3),
+                        sigma_clip=SigmaClip(sigma=3.0),
+                        bkg_estimator=MedianBackground())
+    data_sub = data - bkg.background
+
+    # 2. Convolve for detection
+    kernel = make_2dgaussian_kernel(fwhm, size=5)
+    convolved = convolve(data_sub, kernel)
+
+    # 3. Detect+deblend sources
+    threshold = nsigma * bkg.background_rms
+    finder = SourceFinder(n_pixels=npixels, progress_bar=False)
+    segment_map = finder(convolved, threshold)
+
+    cleaned = data.copy()
+    central_label = None
+
+    if segment_map is not None:
+        # 4. Identify the segment covering the center target
+        cy, cx = data.shape[0] // 2, data.shape[1] // 2
+        central_label = segment_map.data[cy, cx]
+        # if the exact center is background (0), pick the segment closest to the center
+        if central_label == 0 and segment_map.nlabels > 0:
+            from photutils.segmentation import SourceCatalog
+            cat = SourceCatalog(data_sub, segment_map, convolved_data=convolved)
+            dist = np.hypot(cat.xcentroid - cx, cat.ycentroid - cy)
+            central_label = cat.labels[np.argmin(dist)]
+        # 5. Build noise
+        rng = np.random.default_rng(seed)
+        noise = rng.normal(loc=bkg.background, scale=bkg.background_rms)
+        # 6. Replace every pixel that is not the central target
+        other_mask = (segment_map.data != 0) & (segment_map.data != central_label)
+        cleaned[other_mask] = noise[other_mask]
+
+    return cleaned, segment_map, central_label

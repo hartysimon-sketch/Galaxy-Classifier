@@ -1,0 +1,25 @@
+# Font settings
+font.family: serif
+font.serif: Times New Roman
+
+# Grid lines
+axes.grid: False
+
+# Font sizes
+axes.titlesize: x-large
+axes.labelsize: large
+xtick.labelsize: large
+ytick.labelsize: large
+
+# Ticks
+xtick.major.size: 0
+xtick.minor.size: 0
+xtick.labelbottom: False
+xtick.labeltop: False
+ytick.major.size: 0
+ytick.minor.size: 0
+ytick.labelleft: False
+ytick.labelright: False
+
+# Layout
+figure.autolayout: True
