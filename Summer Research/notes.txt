@@ -8,7 +8,7 @@ make sure there are balanced number of          DONE
 use linear interpolation                        DONE
 make multimodal (beta, Av)
 try train val rotation                      
-find images with multiple objects
+find images with multiple objects               DONE
 look at low train size networks
 
 
@@ -18,4 +18,4 @@ ask about the UManchester
 
 LOG:
 after balancing:    ~0.6 (weird dip in graph tho)
-2X2 cutouts:        0.57 (spiky but more normal graph)
+2X2 cutouts:        0.58 (one spike but more normal graph)
