@@ -156,12 +156,12 @@ class FCBlock(nn.Module):
         super().__init__()
         self.block = nn.Sequential(
             nn.Linear(embed_dim, fc_dim),
-            nn.BatchNorm1d(fc_dim)
+            nn.BatchNorm1d(fc_dim),
             nn.ReLU(inplace=True),
             nn.Dropout(dropout),
 
             nn.Linear(fc_dim, fc_dim // 2),
-            nn.BatchNorm1d(fc_dim // 2)
+            nn.BatchNorm1d(fc_dim // 2),
             nn.ReLU(inplace=True),
             nn.Dropout(dropout),
 

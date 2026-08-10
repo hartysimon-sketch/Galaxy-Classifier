@@ -22,3 +22,4 @@ best was  ~0.7 accuracy after 40 epochs
 2X2 W/O batch norm OR perspective: min loss of ~0.78 after ~50 epochs (dropout 0.3)
 2X2 WITH batch norm W/O perspective: min loss of ~0.82 after ~15 epochs (dropout 0.3)
 2X2 W/O batch norm WITH perspective: min loss of ~0.77 after ~60 epochs but spikey asf graph (dropout 0.3) 
+2X2 WITH batch norm AND perspective: min loss of ~0.82 after ~12 epochs (dropout 0.3)
