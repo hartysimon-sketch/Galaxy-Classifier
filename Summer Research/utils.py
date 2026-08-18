@@ -1,5 +1,7 @@
 import pandas as pd
 from astropy.io import fits
+import json
+import os
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -239,3 +241,23 @@ def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=N
         cleaned[other_mask] = noise[other_mask]
 
     return cleaned, segment_map, central_label
+
+
+class RunLogger:
+    def __init__(self, filepath):
+        self.filepath = filepath
+        if not os.path.exists(self.filepath):
+            with open(self.filepath, "w") as f:
+                json.dump([], f)
+
+    def log_run(self, logged_params):
+        # Load existing runs
+        with open(self.filepath, "r") as f:
+            data = json.load(f)
+        
+        # Add to log
+        data.append(logged_params)
+        
+        # Save back to disk
+        with open(self.filepath, "w") as f:
+            json.dump(data, f, indent=4)
