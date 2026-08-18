@@ -1,13 +1,9 @@
-8/9/2026
-
 2X2 50px
 N bnorm     N persp:                loss 0.78   epoch 50    dropout 0.3
 Y bnorm     N persp:                loss 0.82   epoch 15    dropout 0.3
 N bnorm     Y persp:                loss 0.77   epoch 60    dropout 0.3                     spiky graph, bad accuracy
 Y bnorm     Y persp:                loss 0.82   epoch 12    dropout 0.3
 
-
-8/10/2026
 
 FC 3 layers desc scale
 W beta  scale 32    dropout 0.1    acc 0.70
