@@ -11,14 +11,13 @@ try train val rotation
 find images with multiple objects               DONE
 
 
-NEXT TIME:
-ask about the UManchester
-If I were to use photometry, which value for ceers would I use (the MAG values?)
-dont downsample - helped but didn't fix exploding grads
-exaactly one third of gals are flagged
-prioritize purity over completeness??
-add jitter from uncertainty to fc network?
-read more??
+all cols to fc
+add uncertainties to fc network
+prioritize purity -- how
+make multimodal
+continue with logging
+add ordering of wavelengths for the nueral network -- look into it
+do subtraction or division of bands
 
 
 
