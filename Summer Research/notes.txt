@@ -5,20 +5,23 @@ inclination angle transfrom                     DONE
 
 make sure there are balanced number of          DONE
     candidates and noncandidates                DONE
-use linear interpolation                        DONE
-make multimodal (beta, Av)
-try train val rotation                      
+use linear interpolation                        DONE           
 find images with multiple objects               DONE
 
 
-all cols to fc
+add cols to fc
 add uncertainties to fc network
 prioritize purity -- how
 make multimodal
 continue with logging
 add ordering of wavelengths for the nueral network -- look into it
 do subtraction or division of bands
+make multimodal (beta, Av)
+try train val rotation           
 
 
+
+Questions:
+where are av and beta from -- SED fitting?
 
 

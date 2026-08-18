@@ -887,5 +887,63 @@
         "accuracy": 0.6736842393875122,
         "confusion matrix": "Predicted   0   1\nActual           \n0          43  20\n1          11  21",
         "last validation loss": 0.8013291880119021
+    },
+    {
+        "num_outputs": 2,
+        "input_dim": 2,
+        "dropout": 0.2,
+        "scale": 8,
+        "comment": "increase epochs",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 32000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=16, bias=True)\n      (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.2, inplace=False)\n      (4): Linear(in_features=16, out_features=8, bias=True)\n      (5): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.2, inplace=False)\n      (8): Linear(in_features=8, out_features=4, bias=True)\n      (9): BatchNorm1d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.2, inplace=False)\n      (12): Linear(in_features=4, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 286,
+        "purity (dusty)": 0.5454545454545454,
+        "completeness (dusty)": 0.5625,
+        "accuracy": 0.6947368383407593,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          48  15\n1          14  18",
+        "last validation loss": 0.8023098382218483
+    },
+    {
+        "num_outputs": 2,
+        "input_dim": 2,
+        "dropout": 0.2,
+        "scale": 4,
+        "comment": "decrease size",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 32000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=8, bias=True)\n      (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.2, inplace=False)\n      (4): Linear(in_features=8, out_features=4, bias=True)\n      (5): BatchNorm1d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.2, inplace=False)\n      (8): Linear(in_features=4, out_features=2, bias=True)\n      (9): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.2, inplace=False)\n      (12): Linear(in_features=2, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 104,
+        "purity (dusty)": 0.4722222222222222,
+        "completeness (dusty)": 0.53125,
+        "accuracy": 0.6421052813529968,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          44  19\n1          15  17",
+        "last validation loss": 0.8154588157339607
     }
 ]
