@@ -23,5 +23,5 @@ try train val rotation
 
 Questions:
 where are av and beta from -- SED fitting?
-
+maybe remove av
 
