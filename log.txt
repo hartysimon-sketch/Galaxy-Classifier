@@ -15,7 +15,6 @@ W beta  scale 32    dropout 0.2    acc 0.7083
 W beta  scale 32    dropout 0.3    acc 0.7083
 W beta  scale 32    dropout 0.4    acc 0.7083
 
-
 2X2 67px
 Y bnorm     Y persp     Y mask:     loss 0.77    epoch 128   dropout 0.3        acc 0.72    best yet -- converged!
 Y bnorm     Y persp     N mask:     loss 0.77    epoch 128   dropout 0.3        acc 0.59    grads exploded again - because of masking or just random?
