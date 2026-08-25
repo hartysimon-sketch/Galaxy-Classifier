@@ -18,7 +18,7 @@ add ordering of wavelengths for the nueral network -- look into it
 do subtraction or division of bands
 make multimodal (beta, Av)
 try train val rotation           
-
+somehow add a constant or multiply the loss when the model predicts a false positive
 
 
 Questions:
