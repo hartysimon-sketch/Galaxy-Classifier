@@ -13,7 +13,7 @@ add cols to fc
 add uncertainties to fc network
 prioritize purity -- how
 make multimodal
-continue with logging
+continue with logging                                                           DONE
 add ordering of wavelengths for the nueral network -- look into it
 do subtraction or division of bands
 make multimodal (beta, Av)

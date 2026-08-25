@@ -945,5 +945,980 @@
         "accuracy": 0.6421052813529968,
         "confusion matrix": "Predicted   0   1\nActual           \n0          44  19\n1          15  17",
         "last validation loss": 0.8154588157339607
+    },
+    {
+        "num_outputs": 2,
+        "input_dim": 2,
+        "dropout": 0.2,
+        "scale": 8,
+        "comment": "add phot",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F200",
+            "F277",
+            "F356",
+            "F410",
+            "F444",
+            "F606",
+            "F814",
+            "F105",
+            "F125",
+            "F140",
+            "F160",
+            "F435",
+            "F090"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=17, out_features=136, bias=True)\n      (1): BatchNorm1d(136, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.2, inplace=False)\n      (4): Linear(in_features=136, out_features=68, bias=True)\n      (5): BatchNorm1d(68, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.2, inplace=False)\n      (8): Linear(in_features=68, out_features=34, bias=True)\n      (9): BatchNorm1d(34, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.2, inplace=False)\n      (12): Linear(in_features=34, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 14656,
+        "accuracy": 0.6631578803062439,
+        "confusion matrix": "Predicted   0\nActual       \n0          63\n1          32",
+        "last validation loss": NaN
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "change scale",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F200",
+            "F277",
+            "F356",
+            "F410",
+            "F444",
+            "F606",
+            "F814",
+            "F105",
+            "F125",
+            "F140",
+            "F160",
+            "F435",
+            "F090"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=17, out_features=272, bias=True)\n      (1): BatchNorm1d(272, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=272, out_features=136, bias=True)\n      (5): BatchNorm1d(136, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=136, out_features=68, bias=True)\n      (9): BatchNorm1d(68, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=68, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 52430,
+        "accuracy": 0.6631578803062439,
+        "confusion matrix": "Predicted   0\nActual       \n0          63\n1          32",
+        "last validation loss": NaN
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "test",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=32, bias=True)\n      (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=32, out_features=16, bias=True)\n      (5): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=16, out_features=8, bias=True)\n      (9): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=8, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 890,
+        "purity (dusty)": 0.46153846153846156,
+        "completeness (dusty)": 0.1875,
+        "accuracy": 0.6526315808296204,
+        "confusion matrix": "Predicted   0  1\nActual          \n0          56  7\n1          26  6",
+        "last validation loss": 0.8315709591520937
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "phot",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=96, bias=True)\n      (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=96, out_features=48, bias=True)\n      (5): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=48, out_features=24, bias=True)\n      (9): BatchNorm1d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=24, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 6890,
+        "accuracy": 0.6631578803062439,
+        "confusion matrix": "Predicted   0\nActual       \n0          63\n1          32",
+        "last validation loss": NaN
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "phot",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=96, bias=True)\n      (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=96, out_features=48, bias=True)\n      (5): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=48, out_features=24, bias=True)\n      (9): BatchNorm1d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=24, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 6890,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9852245540067399
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "test",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=96, bias=True)\n      (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=96, out_features=48, bias=True)\n      (5): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=48, out_features=24, bias=True)\n      (9): BatchNorm1d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=24, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    initial_lr: 0.0001\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 6890,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9852245540067399
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "add scaling",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=96, bias=True)\n      (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=96, out_features=48, bias=True)\n      (5): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=48, out_features=24, bias=True)\n      (9): BatchNorm1d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=24, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 6890,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9834428036634325
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.3,
+        "scale": 16,
+        "comment": "no phot",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=32, bias=True)\n      (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.3, inplace=False)\n      (4): Linear(in_features=32, out_features=16, bias=True)\n      (5): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.3, inplace=False)\n      (8): Linear(in_features=16, out_features=8, bias=True)\n      (9): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.3, inplace=False)\n      (12): Linear(in_features=8, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 890,
+        "purity (dusty)": 0.5,
+        "completeness (dusty)": 0.09375,
+        "accuracy": 0.6631578803062439,
+        "confusion matrix": "Predicted   0  1\nActual          \n0          60  3\n1          29  3",
+        "last validation loss": 0.8333535946926004
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.5,
+        "scale": 16,
+        "comment": "add back phot and more dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=96, bias=True)\n      (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.5, inplace=False)\n      (4): Linear(in_features=96, out_features=48, bias=True)\n      (5): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.5, inplace=False)\n      (8): Linear(in_features=48, out_features=24, bias=True)\n      (9): BatchNorm1d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.5, inplace=False)\n      (12): Linear(in_features=24, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 6890,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9604643610588244
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.5,
+        "scale": 8,
+        "comment": "decrease model size",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=48, bias=True)\n      (1): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.5, inplace=False)\n      (4): Linear(in_features=48, out_features=24, bias=True)\n      (5): BatchNorm1d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.5, inplace=False)\n      (8): Linear(in_features=24, out_features=12, bias=True)\n      (9): BatchNorm1d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.5, inplace=False)\n      (12): Linear(in_features=12, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 2006,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8650882158334251
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.5,
+        "scale": 32,
+        "comment": "increase model size",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.5, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.5, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.5, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 1.1338955667367514
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.8,
+        "scale": 32,
+        "comment": "more dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.8, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.8, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.8, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9834535312467199
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.8,
+        "scale": 32,
+        "comment": "decrease learning rate",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 1e-05,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.8, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.8, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.8, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 1e-05\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8455034685452881
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.8,
+        "scale": 32,
+        "comment": "make weights even",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 1000,
+        "learning rate": 1e-05,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.8, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.8, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.8, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 1e-05\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8789439553544086
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.8,
+        "scale": 32,
+        "comment": "more epochs",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 1e-05,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.8, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.8, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.8, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 1e-05\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9044383125841926
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.8,
+        "scale": 32,
+        "comment": "increase weights",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 1e-05,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.8, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.8, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.8, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 1e-05\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8264292863825541
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.8,
+        "scale": 32,
+        "comment": "only two bands",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 1e-05,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=4, out_features=128, bias=True)\n      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.8, inplace=False)\n      (4): Linear(in_features=128, out_features=64, bias=True)\n      (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.8, inplace=False)\n      (8): Linear(in_features=64, out_features=32, bias=True)\n      (9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.8, inplace=False)\n      (12): Linear(in_features=32, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 1e-05\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 11490,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8309603322634111
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.4,
+        "scale": 32,
+        "comment": "decrease LR and dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=4, out_features=128, bias=True)\n      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.4, inplace=False)\n      (4): Linear(in_features=128, out_features=64, bias=True)\n      (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.4, inplace=False)\n      (8): Linear(in_features=64, out_features=32, bias=True)\n      (9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.4, inplace=False)\n      (12): Linear(in_features=32, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 11490,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9523109649447548
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.6,
+        "scale": 32,
+        "comment": "increase dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=4, out_features=128, bias=True)\n      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.6, inplace=False)\n      (4): Linear(in_features=128, out_features=64, bias=True)\n      (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.6, inplace=False)\n      (8): Linear(in_features=64, out_features=32, bias=True)\n      (9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.6, inplace=False)\n      (12): Linear(in_features=32, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 11490,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9098519401830221
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.7,
+        "scale": 32,
+        "comment": "increase dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=4, out_features=128, bias=True)\n      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.7, inplace=False)\n      (4): Linear(in_features=128, out_features=64, bias=True)\n      (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.7, inplace=False)\n      (8): Linear(in_features=64, out_features=32, bias=True)\n      (9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.7, inplace=False)\n      (12): Linear(in_features=32, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 11490,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8844987412007606
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.9,
+        "scale": 32,
+        "comment": "irresponsibly high dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=4, out_features=128, bias=True)\n      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.9, inplace=False)\n      (4): Linear(in_features=128, out_features=64, bias=True)\n      (5): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.9, inplace=False)\n      (8): Linear(in_features=64, out_features=32, bias=True)\n      (9): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.9, inplace=False)\n      (12): Linear(in_features=32, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 11490,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8323394849183501
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.9,
+        "scale": 32,
+        "comment": "test again without phot",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=64, bias=True)\n      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.9, inplace=False)\n      (4): Linear(in_features=64, out_features=32, bias=True)\n      (5): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.9, inplace=False)\n      (8): Linear(in_features=32, out_features=16, bias=True)\n      (9): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.9, inplace=False)\n      (12): Linear(in_features=16, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 3058,
+        "purity (dusty)": 0.23255813953488372,
+        "completeness (dusty)": 0.3125,
+        "accuracy": 0.42105263471603394,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          30  33\n1          22  10",
+        "last validation loss": 0.8336895102043348
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.9,
+        "scale": 32,
+        "comment": "more epochs",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 10000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=64, bias=True)\n      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.9, inplace=False)\n      (4): Linear(in_features=64, out_features=32, bias=True)\n      (5): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.9, inplace=False)\n      (8): Linear(in_features=32, out_features=16, bias=True)\n      (9): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.9, inplace=False)\n      (12): Linear(in_features=16, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 3058,
+        "accuracy": 0.6631578803062439,
+        "confusion matrix": "Predicted   0\nActual       \n0          63\n1          32",
+        "last validation loss": 0.8315898100315353
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.6,
+        "scale": 32,
+        "comment": "more normal dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 2000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=2, out_features=64, bias=True)\n      (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.6, inplace=False)\n      (4): Linear(in_features=64, out_features=32, bias=True)\n      (5): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.6, inplace=False)\n      (8): Linear(in_features=32, out_features=16, bias=True)\n      (9): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.6, inplace=False)\n      (12): Linear(in_features=16, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 3058,
+        "purity (dusty)": 0.425,
+        "completeness (dusty)": 0.53125,
+        "accuracy": 0.6000000238418579,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          40  23\n1          15  17",
+        "last validation loss": 0.8252390110702177
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.6,
+        "scale": 32,
+        "comment": "dropna",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 481,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.6, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.6, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.6, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "accuracy": 0.3368421196937561,
+        "confusion matrix": "Predicted   1\nActual       \n0          63\n1          32",
+        "last validation loss": 0.9225993139673342
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.6,
+        "scale": 32,
+        "comment": "actually dropna",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.6, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.6, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.6, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "purity (dusty)": 0.575,
+        "completeness (dusty)": 0.7419354838709677,
+        "accuracy": 0.7191011309623718,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          41  17\n1           8  23",
+        "last validation loss": 0.7824683797864298
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.7,
+        "scale": 32,
+        "comment": "more dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.7, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.7, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.7, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "purity (dusty)": 0.45,
+        "completeness (dusty)": 0.8709677419354839,
+        "accuracy": 0.584269642829895,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          25  33\n1           4  27",
+        "last validation loss": 0.7970749099400691
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.4,
+        "scale": 32,
+        "comment": "less dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.4, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.4, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.4, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "purity (dusty)": 0.5666666666666667,
+        "completeness (dusty)": 0.5483870967741935,
+        "accuracy": 0.6966292262077332,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          45  13\n1          14  17",
+        "last validation loss": 0.8383753159390035
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.5,
+        "scale": 32,
+        "comment": "more dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.5, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.5, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.5, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "purity (dusty)": 0.525,
+        "completeness (dusty)": 0.6774193548387096,
+        "accuracy": 0.6741573214530945,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          39  19\n1          10  21",
+        "last validation loss": 0.7947085607500327
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.6,
+        "scale": 64,
+        "comment": "increase size",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=384, bias=True)\n      (1): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.6, inplace=False)\n      (4): Linear(in_features=384, out_features=192, bias=True)\n      (5): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.6, inplace=False)\n      (8): Linear(in_features=192, out_features=96, bias=True)\n      (9): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.6, inplace=False)\n      (12): Linear(in_features=96, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 96674,
+        "purity (dusty)": 0.5,
+        "completeness (dusty)": 0.7741935483870968,
+        "accuracy": 0.6516854166984558,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          34  24\n1           7  24",
+        "last validation loss": 0.794595374836436
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.7,
+        "scale": 64,
+        "comment": "more dropout",
+        "seed": 42,
+        "batch size": 128,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=384, bias=True)\n      (1): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.7, inplace=False)\n      (4): Linear(in_features=384, out_features=192, bias=True)\n      (5): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.7, inplace=False)\n      (8): Linear(in_features=192, out_features=96, bias=True)\n      (9): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.7, inplace=False)\n      (12): Linear(in_features=96, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 96674,
+        "purity (dusty)": 0.36046511627906974,
+        "completeness (dusty)": 1.0,
+        "accuracy": 0.3820224702358246,
+        "confusion matrix": "Predicted  0   1\nActual          \n0          3  55\n1          0  31",
+        "last validation loss": 0.7971933140499693
+    },
+    {
+        "num_outputs": 2,
+        "dropout": 0.6,
+        "scale": 32,
+        "comment": "lower batch szie",
+        "seed": 42,
+        "batch size": 32,
+        "epochs": 5000,
+        "learning rate": 0.0001,
+        "weight decay": 0.01,
+        "input features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "output features": [
+            "flag"
+        ],
+        "sample size": 449,
+        "loss function": "CrossEntropyLoss()",
+        "model": "GalaxyClassifier(\n  (fc): FCBlock(\n    (block): Sequential(\n      (0): Linear(in_features=6, out_features=192, bias=True)\n      (1): BatchNorm1d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (2): ReLU(inplace=True)\n      (3): Dropout(p=0.6, inplace=False)\n      (4): Linear(in_features=192, out_features=96, bias=True)\n      (5): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (6): ReLU(inplace=True)\n      (7): Dropout(p=0.6, inplace=False)\n      (8): Linear(in_features=96, out_features=48, bias=True)\n      (9): BatchNorm1d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n      (10): ReLU(inplace=True)\n      (11): Dropout(p=0.6, inplace=False)\n      (12): Linear(in_features=48, out_features=2, bias=True)\n    )\n  )\n)",
+        "optimizer": "AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n    capturable: False\n    decoupled_weight_decay: True\n    differentiable: False\n    eps: 1e-08\n    foreach: None\n    fused: None\n    lr: 0.0001\n    maximize: False\n    weight_decay: 0.01\n)",
+        "num params": 25298,
+        "purity (dusty)": 0.6428571428571429,
+        "completeness (dusty)": 0.5806451612903226,
+        "accuracy": 0.7415730357170105,
+        "confusion matrix": "Predicted   0   1\nActual           \n0          48  10\n1          13  18",
+        "last validation loss": 0.7883671561194926
     }
 ]
