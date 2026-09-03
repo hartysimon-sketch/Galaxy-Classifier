@@ -19,9 +19,10 @@ do subtraction or division of bands
 make multimodal (beta, Av)
 try train val rotation           
 somehow add a constant or multiply the loss when the model predicts a false positive
+maybe remove Av
+optuna for hyperparameter optimization
 
 
-Questions:
-where are av and beta from -- SED fitting?
-maybe remove av
+Simulations to use:
+
 
