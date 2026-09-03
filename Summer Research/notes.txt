@@ -9,20 +9,35 @@ use linear interpolation                        DONE
 find images with multiple objects               DONE
 
 
-add cols to fc
+add cols to fc                                                          DONE
+    did this with the four columns you suggested - these were the results in the presentation.
+    I also ran it with any band with more than 450 Photometry measurements - this decreased the 
+    sample size by 9 but added 3 extra features
+
 add uncertainties to fc network
 prioritize purity -- how
 make multimodal
-continue with logging                                                           DONE
+continue with logging                                                   DONE
 add ordering of wavelengths for the nueral network -- look into it
 do subtraction or division of bands
 make multimodal (beta, Av)
 try train val rotation           
-somehow add a constant or multiply the loss when the model predicts a false positive
+multiply / add to loss on False positive
 maybe remove Av
 optuna for hyperparameter optimization
+calculate accuracy and purity every epoch during training so that I can prioritize them?
+    custiom loss function??
 
 
-Simulations to use:
+Discussion for Next Time:
+Adding Photometry with Variable Lengths
+Photometry Whisker Plots -- are all of the galaxies in the sample dropouts?
+add cols to fc                                                          DONE
+    did this with the four columns you suggested - these were the results in the presentation.
+    I also ran it with any band with more than 450 Photometry measurements - this decreased the 
+    sample size by 9 but added 3 extra features
+added an early stopper - working on ways to made training more consistent
 
+next time: more on the CNN network
+    calculate accuracy and 
 
