@@ -264,21 +264,20 @@ class RunLogger:
 
 
 class EarlyStopper:
-# Source - https://stackoverflow.com/a/73704579
-# Posted by isle_of_gods, modified by community. See post 'Timeline' for change history
-# Retrieved 2026-09-03, License - CC BY-SA 4.0
-    def __init__(self, patience=1, min_delta=0):
+    def __init__(self, patience=20, min_delta=0.001):
         self.patience = patience
         self.min_delta = min_delta
         self.counter = 0
-        self.min_validation_loss = float('inf')
+        self.best_loss = None
+        self.early_stop = False
 
-    def early_stop(self, validation_loss):
-        if validation_loss < self.min_validation_loss:
-            self.min_validation_loss = validation_loss
-            self.counter = 0
-        elif validation_loss > (self.min_validation_loss + self.min_delta):
+    def __call__(self, val_loss):
+        if self.best_loss is None:
+            self.best_loss = val_loss
+        elif val_loss > self.best_loss - self.min_delta:
             self.counter += 1
             if self.counter >= self.patience:
-                return True
-        return False
+                self.early_stop = True
+        else:
+            self.best_loss = val_loss
+            self.counter = 0
