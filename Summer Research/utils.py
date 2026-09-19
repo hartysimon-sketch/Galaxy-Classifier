@@ -4,9 +4,8 @@ import json
 import os
 from pathlib import Path
 import numpy as np
-from PIL import Image
-import tqdm
 from torchvision.transforms import InterpolationMode
+import random
 
 from torch.utils.data import Dataset
 from torchvision import transforms
@@ -251,14 +250,12 @@ class RunLogger:
                 json.dump([], f)
 
     def log_run(self, logged_params):
-        # Load existing runs
+        # load existing log
         with open(self.filepath, "r") as f:
             data = json.load(f)
-        
-        # Add to log
-        data.append(logged_params)
-        
-        # Save back to disk
+
+        # update and save
+        data.append(logged_params) # add to log
         with open(self.filepath, "w") as f:
             json.dump(data, f, indent=4)
 
@@ -281,3 +278,10 @@ class EarlyStopper:
         else:
             self.best_loss = val_loss
             self.counter = 0
+
+
+def set_seeds(SEED):
+    random.seed(SEED)
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+    torch.cuda.manual_seed_all(SEED)
