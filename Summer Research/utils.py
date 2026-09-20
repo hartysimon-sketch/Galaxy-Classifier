@@ -52,8 +52,8 @@ class GalaxyDataset(Dataset):
         
         else:
             # preproccessing transforms
-            pre = transforms.Compose([
-                transforms.Resize(input_size, InterpolationMode.BILINEAR)]) # resize
+            pre = transforms.Compose(
+                [transforms.Resize(input_size, InterpolationMode.BILINEAR)]) # resize
             
             # store ids, images, and class probabilities
             ids = []
