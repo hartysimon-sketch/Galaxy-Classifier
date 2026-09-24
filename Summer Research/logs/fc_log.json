@@ -336,5 +336,149 @@
         "epochs": 10000,
         "num_trials": 20,
         "patience": 30
+    },
+    {
+        "n_layers": 2,
+        "n_units_l0": 9,
+        "dropout_l0": 0.3822634555704315,
+        "n_units_l1": 25,
+        "dropout_l1": 0.21951547789558387,
+        "lr": 0.06245139574743072,
+        "optimizer": "Adam",
+        "w1": 1.1953442280127677,
+        "w2": 2.3684660530243136,
+        "batch_size": 64,
+        "accuracy": 0.75,
+        "comment": "test",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 20,
+        "patience": 30
+    },
+    {
+        "n_layers": 2,
+        "n_units_l0": 9,
+        "dropout_l0": 0.3822634555704315,
+        "n_units_l1": 25,
+        "dropout_l1": 0.21951547789558387,
+        "lr": 0.06245139574743072,
+        "optimizer": "Adam",
+        "w1": 1.1953442280127677,
+        "w2": 2.3684660530243136,
+        "batch_size": 64,
+        "accuracy": 0.75,
+        "comment": "test",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 20,
+        "patience": 30
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 117,
+        "dropout_l0": 0.2776339944800051,
+        "lr": 0.004467752817973905,
+        "optimizer": "AdamW",
+        "adamw_weight_decay": 5.4880470007660426e-05,
+        "w1": 2.939169255529117,
+        "w2": 2.550265646722229,
+        "batch_size": 16,
+        "accuracy": 0.7291666865348816,
+        "comment": "cpu",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 20,
+        "patience": 30
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 117,
+        "dropout_l0": 0.2776339944800051,
+        "lr": 0.004467752817973905,
+        "optimizer": "AdamW",
+        "adamw_weight_decay": 5.4880470007660426e-05,
+        "w1": 2.939169255529117,
+        "w2": 2.550265646722229,
+        "batch_size": 16,
+        "accuracy": 0.7291666865348816,
+        "comment": "test",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 20,
+        "patience": 30
+    },
+    {
+        "n_layers": 2,
+        "n_units_l0": 4,
+        "dropout_l0": 0.2482424154252496,
+        "n_units_l1": 72,
+        "dropout_l1": 0.407568559307808,
+        "lr": 0.004053638704742309,
+        "optimizer": "SGD",
+        "sgd_momentum": 0.32214570117767505,
+        "w1": 2.4929828102360485,
+        "w2": 2.2992657980944293,
+        "batch_size": 16,
+        "accuracy": 0.7291666865348816,
+        "comment": "fix alyer order and bias = False",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 20,
+        "patience": 30
     }
 ]

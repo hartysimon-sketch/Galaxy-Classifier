@@ -1,18 +1,12 @@
 import pandas as pd
 from astropy.io import fits
+import astropy
 import json
 import os
 from pathlib import Path
 import numpy as np
-from torchvision.transforms import InterpolationMode
 import random
-
-from torch.utils.data import Dataset
-from torchvision import transforms
 import torch
-import torch.nn as nn
-from torchvision.models.vision_transformer import EncoderBlock
-
 
 
 def fits_df(folder_dir):
@@ -37,9 +31,9 @@ def fits_df(folder_dir):
 
 
 # make a class to transform, store, and organize data
-class GalaxyDataset(Dataset):
+class GalaxyDataset(torch.utils.data.Dataset):
     """Dataset of preprocessed galaxy images"""
-    def __init__(self, galaxy_paths, input_size=100, transform=None, cache_path=None):
+    def __init__(self, images, ids, labels, transform=None, cache_path=None):
         self.transform = transform
 
         if cache_path and Path(cache_path).exists():
@@ -49,44 +43,21 @@ class GalaxyDataset(Dataset):
             self.galaxy_ids = cache['galaxy_ids']
             self.labels = cache['labels']
             
-        
         else:
-            # preproccessing transforms
-            pre = transforms.Compose(
-                [transforms.Resize(input_size, InterpolationMode.BILINEAR)]) # resize
-            
-            # store ids, images, and class probabilities
-            ids = []
-            imgs = []
-            lbls = []
-            for gal_path in galaxy_paths:
-                headers = fits_df(gal_path).sort_values(by="BAND")
-                ids.append(headers.at[0, 'RA'])
-                lbls.append(headers.at[0, 'FLAG'])
+            self.galaxy_ids = ids
+            self.images = images
+            self.labels = labels
 
-                gal_imgs = []
-                for _, row in headers.iterrows():
-                    hdul = fits.open(gal_path / f"{row['BAND']}.fits")
-                    data = hdul[0].data.astype('float32')
-                    gal_imgs.append(torch.from_numpy(data))
-                    hdul.close()
-
-                imgs.append(pre(torch.stack(gal_imgs, dim=0))) # shape = C, H, W ?
-
-            self.galaxy_ids = torch.tensor(ids)
-            self.images = torch.stack(imgs, dim=0)
-            self.labels = torch.tensor(lbls)
-
-            # caching logic - saves the transformed data
+            # caching logic - saves the data
             if cache_path:
                 torch.save({'images': self.images,
                             'galaxy_ids': self.galaxy_ids,
                             'labels': self.labels},
                             cache_path)
 
-    # function to return the image and class probabilities for a galaxy
+    # function to return the image and class probabilities for a galaxy.
     # index based, not based on galaxy id
-    # the passed transform method is applied here to allow testing different transforms
+    # the passed transform method is applied here
     def __getitem__(self, idx):
         img = self.images[idx]
         if self.transform:
@@ -97,79 +68,6 @@ class GalaxyDataset(Dataset):
     # returns to number of stored galaxies
     def __len__(self):
         return len(self.images)
-
-    
-class ConvBlock(nn.Module):
-    """Two CNN layers with batch normalization and ReLU activation. Followed by one MaxPooling layer."""
-    def __init__(self, in_channels, out_channels):
-        super().__init__()
-        self.block = nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True),
-
-            nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True),
-
-            nn.MaxPool2d(kernel_size=2, stride=2))
-
-    def forward(self, x):
-        return self.block(x)
-
-
-class ConvTokenizer(nn.Module):
-    """Projects feature map into a sequence of tokens for the transformer."""
-    def __init__(self, in_channels, embed_dim):
-        super().__init__()
-        self.proj = nn.Conv2d(in_channels, embed_dim, kernel_size=1)
-
-    def forward(self, x):
-        x = self.proj(x) # project features into patches
-        B, C, H, W = x.shape
-        x = x.flatten(2).transpose(1, 2) # reshape to be able to pass into CvT
-        return x
-
-
-class CvTBlock(nn.Module):
-    """Uses PyTorch's EncoderBlock for the convolutional vision transformer."""
-    def __init__(self, embed_dim, num_heads, mlp_ratio=2.0, dropout=0.1):
-        super().__init__()
-        
-        # calculates the multilayer perceptron dimension using mlp_dim
-        mlp_dim = int(embed_dim * mlp_ratio)
-        
-        # combines LayerNorm, MultiheadAttention, and the MLP
-        self.transformer_layer = EncoderBlock(
-            num_heads=num_heads,
-            hidden_dim=embed_dim,
-            mlp_dim=mlp_dim,
-            dropout=dropout,
-            attention_dropout=dropout,
-            norm_layer=nn.LayerNorm)
-
-    def forward(self, x):
-        return self.transformer_layer(x)
-
-
-class FCBlock(nn.Module):
-    def __init__(self, embed_dim, fc_dim, dropout, num_outputs):
-        super().__init__()
-        self.block = nn.Sequential(
-            nn.Linear(embed_dim, fc_dim),
-            nn.BatchNorm1d(fc_dim),
-            nn.ReLU(inplace=True),
-            nn.Dropout(dropout),
-
-            nn.Linear(fc_dim, fc_dim // 2),
-            nn.BatchNorm1d(fc_dim // 2),
-            nn.ReLU(inplace=True),
-            nn.Dropout(dropout),
-
-            nn.Linear(fc_dim // 2, num_outputs))
-
-    def forward(self, x):
-        return self.block(x)
 
 
 def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=None):
@@ -283,5 +181,41 @@ class EarlyStopper:
 def set_seeds(SEED):
     random.seed(SEED)
     np.random.seed(SEED)
+
+    # pytorch seeds
     torch.manual_seed(SEED)
+    torch.cuda.manual_seed(SEED)
     torch.cuda.manual_seed_all(SEED)
+
+    # deterministic pytorch cuda operations -- slows training
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+
+def do_epoch(model, loader, loss_function, device, train=True, optimizer=None):
+    running_loss = 0
+    correct = 0
+    for data, labels in loader:
+        data, labels = data.to(device), labels.to(device)
+
+        # zero gradients in training
+        if train:
+            optimizer.zero_grad()
+
+        # get outputs and loss
+        outputs = model(data)
+        labels = labels.long() # FOR CLASSIFICATION 
+        loss = loss_function(outputs, labels)
+
+        # compute gradients and update weights in training
+        # otherwise, compute loss and num correct
+        if train:
+            loss.backward()
+            optimizer.step()
+        else:
+            running_loss += loss.item() * data.size(0)
+            predictions = torch.argmax(outputs, dim=1)
+            correct += (predictions == labels).float().sum()
+
+    if train == False:
+        return running_loss, correct
