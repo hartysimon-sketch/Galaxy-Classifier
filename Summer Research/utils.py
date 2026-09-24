@@ -1,12 +1,12 @@
-import pandas as pd
-from astropy.io import fits
-import astropy
 import json
 import os
-from pathlib import Path
-import numpy as np
 import random
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
 import torch
+from astropy.io import fits
 
 
 def fits_df(folder_dir):
@@ -23,16 +23,17 @@ def fits_df(folder_dir):
 
     for img_path in imgs:
         header = dict(fits.getheader(img_path))
-        header["FILEPATH"] = img_path
-        header["FILENAME"] = img_path.name
+        header['FILEPATH'] = img_path
+        header['FILENAME'] = img_path.name
         headers.append(header)
-        
+
     return pd.DataFrame(headers)
 
 
 # make a class to transform, store, and organize data
 class GalaxyDataset(torch.utils.data.Dataset):
     """Dataset of preprocessed galaxy images"""
+
     def __init__(self, images, ids, labels, transform=None, cache_path=None):
         self.transform = transform
 
@@ -42,7 +43,7 @@ class GalaxyDataset(torch.utils.data.Dataset):
             self.images = cache['images']
             self.galaxy_ids = cache['galaxy_ids']
             self.labels = cache['labels']
-            
+
         else:
             self.galaxy_ids = ids
             self.images = images
@@ -50,10 +51,14 @@ class GalaxyDataset(torch.utils.data.Dataset):
 
             # caching logic - saves the data
             if cache_path:
-                torch.save({'images': self.images,
-                            'galaxy_ids': self.galaxy_ids,
-                            'labels': self.labels},
-                            cache_path)
+                torch.save(
+                    {
+                        'images': self.images,
+                        'galaxy_ids': self.galaxy_ids,
+                        'labels': self.labels,
+                    },
+                    cache_path,
+                )
 
     # function to return the image and class probabilities for a galaxy.
     # index based, not based on galaxy id
@@ -64,17 +69,20 @@ class GalaxyDataset(torch.utils.data.Dataset):
             img = self.transform(img)
 
         return img, self.labels[idx]
-    
+
     # returns to number of stored galaxies
     def __len__(self):
         return len(self.images)
 
 
-def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=None):
+def mask_other_sources(
+    data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=None
+):
     from astropy.convolution import convolve
     from astropy.stats import SigmaClip
     from photutils.background import Background2D, MedianBackground
-    from photutils.segmentation import make_2dgaussian_kernel, SourceFinder
+    from photutils.segmentation import SourceFinder, make_2dgaussian_kernel
+
     """Detect sources, keep only the segment at the image center, and
     replace all other detected sources with background noise.
 
@@ -103,9 +111,13 @@ def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=N
 
     # 1. Estimate background and background RMS
     box_size = min(box_size, min(data.shape) // 3)
-    bkg = Background2D(data, box_size, filter_size=(3, 3),
-                        sigma_clip=SigmaClip(sigma=3.0),
-                        bkg_estimator=MedianBackground())
+    bkg = Background2D(
+        data,
+        box_size,
+        filter_size=(3, 3),
+        sigma_clip=SigmaClip(sigma=3.0),
+        bkg_estimator=MedianBackground(),
+    )
     data_sub = data - bkg.background
 
     # 2. Convolve for detection
@@ -127,6 +139,7 @@ def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=N
         # if the exact center is background (0), pick the segment closest to the center
         if central_label == 0 and segment_map.nlabels > 0:
             from photutils.segmentation import SourceCatalog
+
             cat = SourceCatalog(data_sub, segment_map, convolved_data=convolved)
             dist = np.hypot(cat.xcentroid - cx, cat.ycentroid - cy)
             central_label = cat.labels[np.argmin(dist)]
@@ -134,27 +147,34 @@ def mask_other_sources(data, box_size=15, fwhm=3.0, nsigma=5, npixels=10, seed=N
         rng = np.random.default_rng(seed)
         noise = rng.normal(loc=bkg.background, scale=bkg.background_rms)
         # 6. Replace every pixel that is not the central target
-        other_mask = (segment_map.data != 0) & (segment_map.data != central_label)
+        other_mask = (segment_map.data != 0) & (
+            segment_map.data != central_label
+        )
         cleaned[other_mask] = noise[other_mask]
 
     return cleaned, segment_map, central_label
 
 
 class RunLogger:
-    def __init__(self, filepath):
+    def __init__(self, filepath: Path):
+        """_summary_
+
+        Args:
+            filepath (Path): _description_
+        """
         self.filepath = filepath
         if not os.path.exists(self.filepath):
-            with open(self.filepath, "w") as f:
+            with open(self.filepath, 'w') as f:
                 json.dump([], f)
 
     def log_run(self, logged_params):
         # load existing log
-        with open(self.filepath, "r") as f:
+        with open(self.filepath) as f:
             data = json.load(f)
 
         # update and save
-        data.append(logged_params) # add to log
-        with open(self.filepath, "w") as f:
+        data.append(logged_params)  # add to log
+        with open(self.filepath, 'w') as f:
             json.dump(data, f, indent=4)
 
 
@@ -178,7 +198,12 @@ class EarlyStopper:
             self.counter = 0
 
 
-def set_seeds(SEED):
+def set_seeds(SEED: int) -> None:
+    """set random seeds for pytorch training
+
+    Args:
+        SEED (int): the random seed to be set
+    """
     random.seed(SEED)
     np.random.seed(SEED)
 
@@ -204,7 +229,7 @@ def do_epoch(model, loader, loss_function, device, train=True, optimizer=None):
 
         # get outputs and loss
         outputs = model(data)
-        labels = labels.long() # FOR CLASSIFICATION 
+        labels = labels.long()  # FOR CLASSIFICATION
         loss = loss_function(outputs, labels)
 
         # compute gradients and update weights in training
@@ -217,5 +242,5 @@ def do_epoch(model, loader, loss_function, device, train=True, optimizer=None):
             predictions = torch.argmax(outputs, dim=1)
             correct += (predictions == labels).float().sum()
 
-    if train == False:
+    if not train:
         return running_loss, correct
