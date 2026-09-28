@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import torch
 from astropy.io import fits
+from PIL import Image
 
 
 def fits_df(folder_dir):
@@ -244,3 +245,28 @@ def do_epoch(model, loader, loss_function, device, train=True, optimizer=None):
 
     if not train:
         return running_loss, correct
+
+
+def imshow_pil(arr: np.ndarray, mode: str = None):
+    """
+    Normalizes and scales the pixel intensity values of a NumPy array
+    to the 0-255 range for display, without modifying the original array.
+    """
+    # Find min and max of the original data
+    min_val = arr.min()
+    max_val = arr.max()
+
+    # Prevent division by zero if the image is a solid color
+    if max_val > min_val:
+        # Scale to 0.0 - 255.0, then cast to uint8 (creates a new array in memory)
+        scaled_arr = ((arr - min_val) / (max_val - min_val) * 255).astype(
+            np.uint8
+        )
+    else:
+        # If the array is uniform, just scale the baseline value
+        scaled_arr = (arr * 255).astype(np.uint8)
+
+    # Convert the newly scaled array copy to a Pillow Image
+    img = Image.fromarray(scaled_arr, mode=mode)
+
+    return img

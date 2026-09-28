@@ -480,5 +480,61 @@
         "epochs": 10000,
         "num_trials": 20,
         "patience": 30
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 44,
+        "dropout_l0": 0.41888185350141927,
+        "lr": 0.003550012525851159,
+        "optimizer": "Adam",
+        "w1": 2.42648957444599,
+        "w2": 2.521570097233795,
+        "batch_size": 32,
+        "accuracy": 0.7083333730697632,
+        "comment": "get best acc",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 20,
+        "patience": 30,
+        "best accuracy": 0.7916666865348816
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 44,
+        "dropout_l0": 0.41888185350141927,
+        "lr": 0.003550012525851159,
+        "optimizer": "Adam",
+        "w1": 2.42648957444599,
+        "w2": 2.521570097233795,
+        "batch_size": 32,
+        "accuracy": 0.7083333730697632,
+        "comment": "get best acc 100 trial",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.7916666865348816
     }
 ]
