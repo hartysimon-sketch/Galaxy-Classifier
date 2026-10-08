@@ -258,5 +258,49 @@
         "patience": 20,
         "accuracy": 0.7083333730697632,
         "best accuracy": 0.7395833730697632
+    },
+    {
+        "n_conv": 2,
+        "n_fc": 3,
+        "n_channels_conv0": 24,
+        "n_channels_conv1": 20,
+        "n_channels_conv2": 5,
+        "kernel_size_conv0": 1,
+        "kernel_size_conv1": 1,
+        "kernel_size_conv2": 3,
+        "padding_conv0": 2,
+        "padding_conv1": 3,
+        "padding_conv2": 1,
+        "dropout_conv0": 0.4909729556485983,
+        "dropout_conv1": 0.4497327922401265,
+        "dropout_conv2": 0.26370173320348284,
+        "n_units_fc0": 48,
+        "n_units_fc1": 48,
+        "n_units_fc2": 80,
+        "dropout_fc0": 0.35742692948967136,
+        "dropout_fc1": 0.3295835055926347,
+        "dropout_fc2": 0.2873687420594126,
+        "lr": 0.0028016351587162596,
+        "optimizer": "AdamW",
+        "adamw_weight_decay": 0.0006672367170464204,
+        "w1": 2.570351922786027,
+        "w2": 1.3993475643167195,
+        "batch_size": 32,
+        "comment": "get div 10 scaling baseline",
+        "bands": [
+            "f150w",
+            "f277w",
+            "f444w"
+        ],
+        "out_features": [
+            "FLAG"
+        ],
+        "seed": 42,
+        "epochs": 200,
+        "image_size": 67,
+        "num_trials": 20,
+        "patience": 20,
+        "accuracy": 0.6979166865348816,
+        "best accuracy": 0.7604166865348816
     }
 ]

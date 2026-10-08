@@ -536,5 +536,82 @@
         "num_trials": 100,
         "patience": 30,
         "best accuracy": 0.7916666865348816
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 128,
+        "dropout_l0": 0.49999999999999994,
+        "lr": 1e-05,
+        "optimizer": "Adam",
+        "w1": 1.0,
+        "w2": 1.9218921060077383,
+        "batch_size": 16,
+        "accuracy": 0.7291666865348816,
+        "comment": "use band used in CNN and nothing else",
+        "in_features": [
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.7604166865348816
+    },
+    {
+        "n_layers": 2,
+        "n_units_l0": 60,
+        "dropout_l0": 0.20518877860671533,
+        "n_units_l1": 57,
+        "dropout_l1": 0.36630643068544505,
+        "lr": 0.029063644531566197,
+        "optimizer": "Adam",
+        "w1": 1.5220473315024523,
+        "w2": 1.686465598696579,
+        "batch_size": 32,
+        "accuracy": 0.6770833134651184,
+        "comment": "use only CNN bands with default sampler",
+        "in_features": [
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.71875
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 128,
+        "dropout_l0": 0.49999999999999994,
+        "lr": 1e-05,
+        "optimizer": "Adam",
+        "w1": 1.0,
+        "w2": 1.9218921060077383,
+        "batch_size": 16,
+        "accuracy": 0.7291666865348816,
+        "comment": "test seed",
+        "in_features": [
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.7604166865348816
     }
 ]
