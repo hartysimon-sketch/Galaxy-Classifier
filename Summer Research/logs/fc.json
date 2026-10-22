@@ -613,5 +613,89 @@
         "num_trials": 100,
         "patience": 30,
         "best accuracy": 0.7604166865348816
+    },
+    {
+        "n_layers": 3,
+        "n_units_l0": 15,
+        "dropout_l0": 0.2587948587257436,
+        "n_units_l1": 9,
+        "dropout_l1": 0.2975990992289793,
+        "n_units_l2": 52,
+        "dropout_l2": 0.2814047095321688,
+        "lr": 0.02065142557895925,
+        "optimizer": "AdamW",
+        "adamw_weight_decay": 3.661819220392426e-05,
+        "w1": 2.6043939615080793,
+        "w2": 1.1491012873595416,
+        "batch_size": 16,
+        "accuracy": 0.6666666865348816,
+        "comment": "get baseline",
+        "in_features": [
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.7395833134651184
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 85,
+        "dropout_l0": 0.4224794303334156,
+        "lr": 0.0038699622451561803,
+        "optimizer": "Adam",
+        "w1": 2.8738017333750667,
+        "w2": 2.245832045051805,
+        "batch_size": 32,
+        "accuracy": 0.6770833134651184,
+        "comment": "get baseline",
+        "in_features": [
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.7083333134651184
+    },
+    {
+        "n_layers": 1,
+        "n_units_l0": 120,
+        "dropout_l0": 0.2125896351638943,
+        "lr": 0.001713199104474343,
+        "optimizer": "AdamW",
+        "adamw_weight_decay": 0.009197357176606755,
+        "w1": 2.179033645704212,
+        "w2": 2.7557654622444954,
+        "batch_size": 16,
+        "accuracy": 0.7916666865348816,
+        "comment": "get baseline",
+        "in_features": [
+            "beta",
+            "Av",
+            "F115",
+            "F150",
+            "F277",
+            "F444"
+        ],
+        "out_features": [
+            "flag"
+        ],
+        "seed": 42,
+        "epochs": 10000,
+        "num_trials": 100,
+        "patience": 30,
+        "best accuracy": 0.8229166865348816
     }
 ]
