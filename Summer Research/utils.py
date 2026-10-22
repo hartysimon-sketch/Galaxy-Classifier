@@ -276,6 +276,7 @@ def masked_ratio(img1, img2, sigma):
     from astropy.stats import sigma_clipped_stats
 
     # Divide two images, keeping only pixels where both bands exceed a flux threshold.
+    # try individual masking
     _, _, std1 = sigma_clipped_stats(img1)
     _, _, std2 = sigma_clipped_stats(img2)
     std = max(std1, std2)  # take the maximum one?
