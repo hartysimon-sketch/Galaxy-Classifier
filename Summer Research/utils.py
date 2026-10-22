@@ -272,28 +272,23 @@ def imshow_pil(arr: np.ndarray, mode: str = None):
     return img
 
 
-def masked_ratio(img1, img2, sigma):
+def masked_ratio(img1, img2):
     from astropy.stats import sigma_clipped_stats
 
     # Divide two images, keeping only pixels where both bands exceed a flux threshold.
-    # try individual masking
-    _, _, std1 = sigma_clipped_stats(img1)
-    _, _, std2 = sigma_clipped_stats(img2)
-    std = max(std1, std2)  # take the maximum one?
-
-    thresh = std * sigma
-
-    good = (img1 > thresh) & (img2 > thresh)
-    ratio = np.full_like(img1, np.nan)
+    _, _, thresh1 = sigma_clipped_stats(img1)
+    _, _, thresh2 = sigma_clipped_stats(img2)
+    good = (img1 > thresh1) & (img2 > thresh2)
+    ratio = np.full_like(img1, 0)
     np.divide(img1, img2, out=ratio, where=good)
     return ratio
 
 
-def clip_extremes(ratio, sigma=5):
+def clip_extremes(image, sigma=5):
     from astropy.stats import sigma_clip
 
     # Sigma-clip residual outliers
-    clipped = sigma_clip(ratio, sigma=sigma, maxiters=5, masked=True)
-    result = ratio.copy()
-    result[clipped.mask] = np.nan
+    clipped = sigma_clip(image, sigma=sigma, maxiters=5, masked=True)
+    result = image.copy()
+    result[clipped.mask] = 0
     return result
