@@ -292,3 +292,15 @@ def clip_extremes(image, sigma=5):
     result = image.copy()
     result[clipped.mask] = 0
     return result
+
+
+def reset_weights(m):
+    # source: https://github.com/christianversloot/machine-learning-articles/blob/main/how-to-use-k-fold-cross-validation-with-pytorch.md
+    """
+    Try resetting model weights to avoid
+    weight leakage.
+    """
+    for layer in m.children():
+        if hasattr(layer, 'reset_parameters'):
+            print(f'Reset trainable parameters of layer = {layer}')
+            layer.reset_parameters()
