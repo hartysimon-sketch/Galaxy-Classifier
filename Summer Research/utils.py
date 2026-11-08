@@ -304,3 +304,20 @@ def reset_weights(m):
         if hasattr(layer, 'reset_parameters'):
             print(f'Reset trainable parameters of layer = {layer}')
             layer.reset_parameters()
+
+
+def analyze_data(data, axis=None, name=None):
+    if isinstance(data, torch.Tensor):
+        data = data.detach().cpu().numpy()
+
+    if name is not None:
+        print(name)
+
+    print('Mean: ', np.mean(data, axis=axis))
+    print('Median: ', np.median(data, axis=axis))
+    print('St. Dev: ', np.std(data, axis=axis))
+
+    print('Max: ', np.max(data, axis=axis))
+    print('Min: ', np.min(data, axis=axis))
+
+    print('Length: ', len(data))
