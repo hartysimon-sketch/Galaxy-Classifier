@@ -219,8 +219,14 @@ def set_seeds(SEED: int) -> None:
 
 
 def do_epoch(model, loader, loss_function, device, train=True, optimizer=None):
+    if train:
+        model.train()
+    else:
+        model.eval()
+
     running_loss = 0
     correct = 0
+
     for data, labels in loader:
         data, labels = data.to(device), labels.to(device)
 
@@ -238,13 +244,12 @@ def do_epoch(model, loader, loss_function, device, train=True, optimizer=None):
         if train:
             loss.backward()
             optimizer.step()
-        else:
-            running_loss += loss.item() * data.size(0)
-            predictions = torch.argmax(outputs, dim=1)
-            correct += (predictions == labels).float().sum()
 
-    if not train:
-        return running_loss, correct
+        predictions = torch.argmax(outputs, dim=1)
+        correct += (predictions == labels).float().sum()
+        running_loss += loss.item() * data.size(0)
+
+    return running_loss, correct
 
 
 def imshow_pil(arr: np.ndarray, mode: str = None):
