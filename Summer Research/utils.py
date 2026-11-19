@@ -35,43 +35,60 @@ def fits_df(folder_dir):
 class GalaxyDataset(torch.utils.data.Dataset):
     """Dataset of preprocessed galaxy images"""
 
-    def __init__(self, images, ids, labels, transform=None, cache_path=None):
+    def __init__(
+        self,
+        images,
+        labels,
+        transform=None,
+        save_path=None,
+        load_path=None,
+        multiplier=None,
+        transform_on_get=False,
+    ):
+
         self.transform = transform
+        self.multiplier = multiplier
+        self.transform_on_get = transform_on_get
 
-        if cache_path and Path(cache_path).exists():
-            # caching logic to avoid preprocessing on consecutive runs
-            cache = torch.load(cache_path, weights_only=False)
+        # will load dataset saved at given path
+        if load_path and Path(load_path).exists():
+            cache = torch.load(load_path, weights_only=False)
             self.images = cache['images']
-            self.galaxy_ids = cache['galaxy_ids']
             self.labels = cache['labels']
-
+        elif load_path is None:
+            all_images = [images]
+            all_labels = [labels]
+            if multiplier:
+                for _ in range(multiplier - 1):
+                    batch_images = (
+                        torch.stack([transform(img) for img in images])
+                        if not transform_on_get
+                        else [images]
+                    )
+                    all_images.append(batch_images)
+                    all_labels.append(labels)
+            self.images = torch.cat(all_images, dim=0)
+            self.labels = torch.cat(all_labels, dim=0)
         else:
-            self.galaxy_ids = ids
-            self.images = images
-            self.labels = labels
+            raise FileNotFoundError(f'no file named: {load_path} found')
 
-            # caching logic - saves the data
-            if cache_path:
-                torch.save(
-                    {
-                        'images': self.images,
-                        'galaxy_ids': self.galaxy_ids,
-                        'labels': self.labels,
-                    },
-                    cache_path,
-                )
+        # saves dataset to given path
+        if save_path:
+            torch.save(
+                {
+                    'images': self.images,
+                    'labels': self.labels,
+                },
+                save_path,
+            )
 
-    # function to return the image and class probabilities for a galaxy.
-    # index based, not based on galaxy id
-    # the passed transform method is applied here
     def __getitem__(self, idx):
         img = self.images[idx]
-        if self.transform:
+        if self.transform & self.transform_on_get:
             img = self.transform(img)
 
         return img, self.labels[idx]
 
-    # returns to number of stored galaxies
     def __len__(self):
         return len(self.images)
 
@@ -326,3 +343,36 @@ def analyze_data(data, axis=None, name=None):
     print('Min: ', np.min(data, axis=axis))
 
     print('Length: ', len(data))
+
+
+def get_hyperparameters(trial, model, device):
+
+    # optimizer and learning rate
+    lr = trial.suggest_float('lr', 1e-5, 1e-1, log=True)
+    optimizer_name = trial.suggest_categorical(
+        'optimizer', ['Adam', 'SGD', 'AdamW']
+    )
+
+    kwargs = {'lr': lr}
+
+    if optimizer_name == 'AdamW':
+        kwargs['weight_decay'] = trial.suggest_float(
+            'adamw_weight_decay', 1e-5, 1e-1, log=True
+        )
+    elif optimizer_name == 'SGD':
+        kwargs['momentum'] = trial.suggest_float('sgd_momentum', 0.0, 0.99)
+
+    optimizer = getattr(torch.optim, optimizer_name)(
+        model.parameters(), **kwargs
+    )
+
+    # weights and loss function
+    w1 = trial.suggest_float('w1', 1, 3)
+    w2 = trial.suggest_float('w2', 1, 3)
+    weights = torch.tensor([w1, w2]).to(device)
+    loss_func = torch.nn.CrossEntropyLoss(weight=weights)
+
+    # batch size and loaders
+    batch_size = trial.suggest_categorical('batch_size', [16, 32, 64])
+
+    return optimizer, loss_func, batch_size
