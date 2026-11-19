@@ -84,7 +84,7 @@ class GalaxyDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         img = self.images[idx]
-        if self.transform & self.transform_on_get:
+        if self.transform and self.transform_on_get:
             img = self.transform(img)
 
         return img, self.labels[idx]
